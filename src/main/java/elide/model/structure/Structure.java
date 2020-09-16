@@ -30,7 +30,7 @@ public class Structure implements Serializable, Cloneable {
 	private Double taking;
 	private User currentUser;
 	private ArrayList<SalePolicy> discountPolicies;
-	private int saleDay;	
+	private int saleDay;
 	private int discountPercentage;
 	private boolean saleDayActivated;
 
@@ -39,25 +39,24 @@ public class Structure implements Serializable, Cloneable {
 	 *
 	 * @param name the structure's name
 	 * @throws ClassNotFoundException the class not found exception.
-	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws IOException            Signals that an I/O exception has occurred.
 	 */
 	public Structure(String name) throws ClassNotFoundException, IOException {
-		this.name 							= name;
-		this.teams 							= new ArrayList<Team>(); 
-		this.stadiums 					= new ArrayList<Stadium>();
-		this.registreredUsers 	= new ArrayList<User>();
-		this.taking 						= this.getTaking();
-		this.currentUser 				= null;
-		this.discountPolicies		= new ArrayList<SalePolicy>();
-		this.saleDay						= 1;
+		this.name = name;
+		this.teams = new ArrayList<Team>();
+		this.stadiums = new ArrayList<Stadium>();
+		this.registreredUsers = new ArrayList<User>();
+		this.taking = this.getTaking();
+		this.currentUser = null;
+		this.discountPolicies = new ArrayList<SalePolicy>();
+		this.saleDay = 1;
 		this.discountPercentage = 0;
-		this.saleDayActivated 	= false;
-		
-		if(new File("structure.ser").exists()) {
+		this.saleDayActivated = false;
+
+		if (new File("structure.ser").exists()) {
 			System.out.println("File exist!");
 			load();
-		}
-		else {
+		} else {
 			System.out.println("File not exist!");
 			this.discountPolicies.add(new SalePolicy(ClientKindEnum.ELDERLY, false));
 			this.discountPolicies.add(new SalePolicy(ClientKindEnum.KIDS, false));
@@ -92,7 +91,7 @@ public class Structure implements Serializable, Cloneable {
 	public ArrayList<Stadium> getStadiums() {
 		return stadiums;
 	}
-	
+
 	/**
 	 * Gets the stadium by name.
 	 *
@@ -100,8 +99,8 @@ public class Structure implements Serializable, Cloneable {
 	 * @return the stadium with this name
 	 */
 	public Stadium getStadiumByName(String name) {
-		for(Stadium s: this.stadiums) {
-			if(s.getName().equals(name)) {
+		for (Stadium s : this.stadiums) {
+			if (s.getName().equals(name)) {
 				return s;
 			}
 		}
@@ -116,17 +115,18 @@ public class Structure implements Serializable, Cloneable {
 	public void setStadiums(ArrayList<Stadium> stadiums) {
 		this.stadiums = stadiums;
 	}
-	
+
 	/**
 	 * Adds a new team in the structure
 	 * 
 	 * @param team will be added
-	 * @throws ItemAlreadyPresentException if is already present a team with this name
+	 * @throws ItemAlreadyPresentException if is already present a team with this
+	 *                                     name
 	 */
 	public void addStadium(Stadium stadium) throws ItemAlreadyPresentException {
 		try {
 			Stadium tempStadium = this.getStadiumByName(stadium.getName());
-			if(tempStadium != null) {
+			if (tempStadium != null) {
 				throw new ItemAlreadyPresentException("Team gi� presente con questo nome");
 			}
 		} catch (ItemNotFoundException e) {
@@ -135,14 +135,13 @@ public class Structure implements Serializable, Cloneable {
 	}
 
 	/**
-	 * Gets the taking.
-	 * It's the sum of all stadium's taking.
+	 * Gets the taking. It's the sum of all stadium's taking.
 	 *
 	 * @return the taking
 	 */
 	public Double getTaking() {
 		double taking = 0;
-		for(Stadium s: this.stadiums) {
+		for (Stadium s : this.stadiums) {
 			taking = taking + s.getTaking();
 		}
 		return taking;
@@ -198,11 +197,12 @@ public class Structure implements Serializable, Cloneable {
 	 *
 	 * @param name the name of the team we want
 	 * @return the team by name
-	 * @throws ItemNotFoundException Signals that the structure don't have a team with this name
+	 * @throws ItemNotFoundException Signals that the structure don't have a team
+	 *                               with this name
 	 */
 	public Team getTeamByName(String name) {
-		for(Team t: this.teams) {
-			if(t.getName().equals(name)) {
+		for (Team t : this.teams) {
+			if (t.getName().equals(name)) {
 				return t;
 			}
 		}
@@ -217,17 +217,18 @@ public class Structure implements Serializable, Cloneable {
 	public void setTeams(ArrayList<Team> teams) {
 		this.teams = teams;
 	}
-	
+
 	/**
 	 * Adds a new team in the structure
 	 * 
 	 * @param team will be added
-	 * @throws ItemAlreadyPresentException if is already present a team with this name
+	 * @throws ItemAlreadyPresentException if is already present a team with this
+	 *                                     name
 	 */
 	public void addTeam(Team team) throws ItemAlreadyPresentException {
 		try {
 			Team tempTeam = this.getTeamByName(team.getName());
-			if(tempTeam != null) {
+			if (tempTeam != null) {
 				throw new ItemAlreadyPresentException("Team gi� presente con questo nome");
 			}
 		} catch (ItemNotFoundException e) {
@@ -243,7 +244,7 @@ public class Structure implements Serializable, Cloneable {
 	public void setRegistreredUsers(ArrayList<User> registreredUsers) {
 		this.registreredUsers = registreredUsers;
 	}
-	
+
 	/**
 	 * Gets the discount policies.
 	 *
@@ -261,7 +262,7 @@ public class Structure implements Serializable, Cloneable {
 	public void setDiscountPolicies(ArrayList<SalePolicy> discountPolicy) {
 		this.discountPolicies = discountPolicy;
 	}
-	
+
 	/**
 	 * Gets the discount policy by kind.
 	 *
@@ -269,8 +270,8 @@ public class Structure implements Serializable, Cloneable {
 	 * @return the discount policy by kind
 	 */
 	public SalePolicy getDiscountPolicyByKind(ClientKindEnum discountKind) {
-		for(SalePolicy discountPolicy: this.discountPolicies) {
-			if(discountPolicy.getKind().equals(discountKind)) {
+		for (SalePolicy discountPolicy : this.discountPolicies) {
+			if (discountPolicy.getKind().equals(discountKind)) {
 				return discountPolicy;
 			}
 		}
@@ -337,12 +338,13 @@ public class Structure implements Serializable, Cloneable {
 			System.out.println("Structure saved!");
 		}
 	}
-	
+
 	/**
 	 * Deserialize the structure.
 	 *
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @throws ClassNotFoundException the class not found exception, Signals that a model class has changed
+	 * @throws IOException            Signals that an I/O exception has occurred.
+	 * @throws ClassNotFoundException the class not found exception, Signals that a
+	 *                                model class has changed
 	 */
 	public void load() throws IOException, ClassNotFoundException {
 
@@ -350,21 +352,21 @@ public class Structure implements Serializable, Cloneable {
 		try {
 			FileInputStream fileIn = new FileInputStream("structure.ser");
 			ObjectInputStream objIn = new ObjectInputStream(fileIn);
-			
-			structure 							= (Structure) objIn.readObject();
-			this.name 							= structure.getName();
-			this.registreredUsers 	= structure.getRegistreredUsers();
-			this.stadiums 					= structure.getStadiums();
-			for(Stadium stadium: this.stadiums) {
+
+			structure = (Structure) objIn.readObject();
+			this.name = structure.getName();
+			this.registreredUsers = structure.getRegistreredUsers();
+			this.stadiums = structure.getStadiums();
+			for (Stadium stadium : this.stadiums) {
 				stadium.removeFinishedMatches();
 			}
-			this.taking 						= structure.getTaking();
-			this.teams 							= structure.getTeams();
-			this.discountPolicies 	= structure.getDiscountPolicies();
-			this.saleDay 						= structure.getSaleDay();
-			this.saleDayActivated 	= structure.isSaleDayActivated();
+			this.taking = structure.getTaking();
+			this.teams = structure.getTeams();
+			this.discountPolicies = structure.getDiscountPolicies();
+			this.saleDay = structure.getSaleDay();
+			this.saleDayActivated = structure.isSaleDayActivated();
 			this.discountPercentage = structure.getDiscountPercentage();
-			
+
 			objIn.close();
 			fileIn.close();
 			System.out.println("Structure loaded!");
@@ -372,7 +374,7 @@ public class Structure implements Serializable, Cloneable {
 			i.printStackTrace();
 		} catch (ClassNotFoundException c) {
 			c.printStackTrace();
-		}		
+		}
 	}
 
 	/**
@@ -402,8 +404,8 @@ public class Structure implements Serializable, Cloneable {
 	public boolean login(String username, String password) {
 		System.out.println(username + "-" + password);
 
-		for(User user: this.getRegistreredUsers()) {
-			if(user.getName().equalsIgnoreCase(username) && user.getPassword().equals(password)) {
+		for (User user : this.getRegistreredUsers()) {
+			if (user.getName().equalsIgnoreCase(username) && user.getPassword().equals(password)) {
 				System.out.println("Someone has logged with: " + username + "-" + password);
 				this.setCurrentUser(user);
 				return true;
@@ -420,50 +422,40 @@ public class Structure implements Serializable, Cloneable {
 		System.out.println(this.getCurrentUser().getName() + " Logged Out!");
 		this.setCurrentUser(null);
 	}
-	
-	/** 
+
+	/**
 	 * Return a string rapresentation of the structure object
 	 * 
 	 * @return string rapresentation of the object
 	 */
 	@Override
 	public String toString() {
-		return this.getClass().getSimpleName() + "{" +
-				"currentUser: " 				+ this.currentUser +
-				"discountPercentage: " 	+ this.discountPercentage +
-				"discountPolicies: "		+ this.discountPolicies + 
-				"name: "								+ this.name + 
-				"registreredUsers: "		+ this.registreredUsers +
-				"saleDayActivated: "		+ this.saleDayActivated + 
-				"saleDay: "							+ this.saleDay + 
-				"stadiums: "						+ this.stadiums +
-				"taking: "							+ this.taking + 
-				"teams: "								+ this.teams + 
-				"}";
+		return this.getClass().getSimpleName() + "{" + "currentUser: " + this.currentUser + "discountPercentage: "
+				+ this.discountPercentage + "discountPolicies: " + this.discountPolicies + "name: " + this.name
+				+ "registreredUsers: " + this.registreredUsers + "saleDayActivated: " + this.saleDayActivated + "saleDay: "
+				+ this.saleDay + "stadiums: " + this.stadiums + "taking: " + this.taking + "teams: " + this.teams + "}";
 	}
-	
+
 	/**
 	 * Make a "deep" comparision between this object and another object.
 	 * 
-	 * @return true, if the comparated object have the same class and the same proprierties
+	 * @return true, if the comparated object have the same class and the same
+	 *         proprierties
 	 */
 	@Override
 	public boolean equals(Object anotherObject) {
-		if(anotherObject == null) return false;
-		if(this.getClass() != anotherObject.getClass()) return false;
+		if (anotherObject == null)
+			return false;
+		if (this.getClass() != anotherObject.getClass())
+			return false;
 		Structure other = (Structure) anotherObject;
-		return this.currentUser.equals(other.currentUser) &&
-				this.discountPercentage == other.discountPercentage &&
-				this.discountPolicies.equals(other.discountPolicies) &&
-				this.name.equals(other.name) &&
-				this.registreredUsers.equals(other.registreredUsers) &&
-				this.saleDayActivated == other.saleDayActivated &&
-				this.saleDay == other.saleDay &&
-				this.stadiums.equals(other.stadiums) &&
-				this.taking == other.taking &&
-				this.teams.equals(other.teams);
+		return this.currentUser.equals(other.currentUser) && this.discountPercentage == other.discountPercentage
+				&& this.discountPolicies.equals(other.discountPolicies) && this.name.equals(other.name)
+				&& this.registreredUsers.equals(other.registreredUsers) && this.saleDayActivated == other.saleDayActivated
+				&& this.saleDay == other.saleDay && this.stadiums.equals(other.stadiums) && this.taking == other.taking
+				&& this.teams.equals(other.teams);
 	}
-	
+
 	/**
 	 * Make a "deep" copy of this object.
 	 * 
@@ -473,23 +465,22 @@ public class Structure implements Serializable, Cloneable {
 	public Object clone() {
 		try {
 			Structure cloned = (Structure) super.clone();
-			
-			cloned.currentUser 				= (User) this.currentUser.clone();
+
+			cloned.currentUser = (User) this.currentUser.clone();
 			cloned.discountPercentage = this.discountPercentage;
-			cloned.discountPolicies		= (ArrayList<SalePolicy>) this.discountPolicies.clone();
-			cloned.name								= this.name;
-			cloned.registreredUsers		= (ArrayList<User>) this.registreredUsers.clone();
-			cloned.saleDayActivated		= this.saleDayActivated;
-			cloned.saleDay						= this.saleDay;
-			cloned.stadiums						= (ArrayList<Stadium>) this.stadiums.clone();
-			cloned.taking							= this.taking;
-			cloned.teams							= (ArrayList<Team>) this.teams.clone();
-			
+			cloned.discountPolicies = (ArrayList<SalePolicy>) this.discountPolicies.clone();
+			cloned.name = this.name;
+			cloned.registreredUsers = (ArrayList<User>) this.registreredUsers.clone();
+			cloned.saleDayActivated = this.saleDayActivated;
+			cloned.saleDay = this.saleDay;
+			cloned.stadiums = (ArrayList<Stadium>) this.stadiums.clone();
+			cloned.taking = this.taking;
+			cloned.teams = (ArrayList<Team>) this.teams.clone();
+
 			return cloned;
-		}
-		catch(CloneNotSupportedException e) {
+		} catch (CloneNotSupportedException e) {
 			return null;
 		}
 	}
-	
+
 }

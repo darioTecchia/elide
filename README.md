@@ -8,3 +8,4 @@ https://it.wikipedia.org/wiki/Elide
 
 ##  Updates
 - Moved down login and logout core funcionality from gui layout to Structure class.
+- Well formatted all the java files

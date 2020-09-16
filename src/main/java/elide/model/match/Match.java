@@ -23,17 +23,17 @@ public class Match implements Serializable, Cloneable {
 	/**
 	 * Instantiates a new match.
 	 *
-	 * @param date the date of the match
-	 * @param team_1 the first team of the match
-	 * @param team_2 the second team of the match
+	 * @param date    the date of the match
+	 * @param team_1  the first team of the match
+	 * @param team_2  the second team of the match
 	 * @param stadium the stadium of the match
 	 */
 	public Match(DateTime date, Team team_1, Team team_2, Stadium stadium) {
-		this.ID 					= this.hashCode();
-		this.date 				= date;
-		this.team_1 			= team_1;
-		this.team_2 			= team_2;
-		this.stadium 			= stadium;
+		this.ID = this.hashCode();
+		this.date = date;
+		this.team_1 = team_1;
+		this.team_2 = team_2;
+		this.stadium = stadium;
 		this.avaiableSeat = stadium.getCapiency();
 	}
 
@@ -118,7 +118,6 @@ public class Match implements Serializable, Cloneable {
 		return ID;
 	}
 
-
 	/**
 	 * Gets the avaiable seat.
 	 *
@@ -143,7 +142,7 @@ public class Match implements Serializable, Cloneable {
 	 * @return true, if is finished
 	 */
 	public boolean isFinished() {
-		return DateTime.now().isAfter(this.date.getMillis() + 1000*60*90);
+		return DateTime.now().isAfter(this.date.getMillis() + 1000 * 60 * 90);
 	}
 
 	/**
@@ -155,39 +154,33 @@ public class Match implements Serializable, Cloneable {
 		return DateTime.now().isAfter(this.date.getMillis()) && !isFinished();
 	}
 
-	/** 
+	/**
 	 * Return a string rapresentation of the match object
 	 * 
 	 * @return string rapresentation of the object
 	 */
 	@Override
 	public String toString() {
-		return this.getClass().getSimpleName() + "{" +
-				"ID: " 						+ this.ID +
-				"avaiableSeat: " 	+ this.avaiableSeat + 
-				"date: " 					+ this.date.toString("EEEE dd MMMM yyyy HH:mm") + 
-				"stadium: " 			+ this.stadium + 
-				"team_1: " 				+ this.team_1 + 
-				"team_2: " 				+ this.team_2
-				+ "}";
+		return this.getClass().getSimpleName() + "{" + "ID: " + this.ID + "avaiableSeat: " + this.avaiableSeat + "date: "
+				+ this.date.toString("EEEE dd MMMM yyyy HH:mm") + "stadium: " + this.stadium + "team_1: " + this.team_1
+				+ "team_2: " + this.team_2 + "}";
 	}
 
 	/**
 	 * Make a "deep" comparision between this object and another object.
 	 * 
-	 * @return true, if the comparated object have the same class and the same proprierties
+	 * @return true, if the comparated object have the same class and the same
+	 *         proprierties
 	 */
 	@Override
 	public boolean equals(Object anotherObject) {
-		if(anotherObject == null) return false;
-		if(this.getClass() != anotherObject.getClass()) return false;
+		if (anotherObject == null)
+			return false;
+		if (this.getClass() != anotherObject.getClass())
+			return false;
 		Match other = (Match) anotherObject;
-		return this.ID == other.ID &&
-				this.avaiableSeat == other.avaiableSeat &&
-				this.date.equals(other.date) &&
-				this.stadium.equals(other.stadium) &&
-				this.team_1.equals(other.team_1) &&
-				this.team_2.equals(other.team_2);
+		return this.ID == other.ID && this.avaiableSeat == other.avaiableSeat && this.date.equals(other.date)
+				&& this.stadium.equals(other.stadium) && this.team_1.equals(other.team_1) && this.team_2.equals(other.team_2);
 	}
 
 	/**
@@ -199,17 +192,16 @@ public class Match implements Serializable, Cloneable {
 	public Object clone() {
 		try {
 			Match cloned = (Match) super.clone();
-			
+
 			cloned.avaiableSeat = this.avaiableSeat;
-			cloned.date					= this.date;
-			cloned.ID						= this.ID;
-			cloned.stadium			= (Stadium) this.stadium.clone();
-			cloned.team_1				= (Team) this.team_1.clone();
-			cloned.team_2				= (Team) this.team_2.clone();
-			
+			cloned.date = this.date;
+			cloned.ID = this.ID;
+			cloned.stadium = (Stadium) this.stadium.clone();
+			cloned.team_1 = (Team) this.team_1.clone();
+			cloned.team_2 = (Team) this.team_2.clone();
+
 			return cloned;
-		}
-		catch(CloneNotSupportedException e) {
+		} catch (CloneNotSupportedException e) {
 			return null;
 		}
 	}

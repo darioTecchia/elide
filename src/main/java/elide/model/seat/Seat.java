@@ -17,7 +17,9 @@ public class Seat implements Serializable, Cloneable {
 	/**
 	 * The Enum SeatEnum.
 	 */
-	public static enum SeatEnum { AVAIABLE, PRENOATED, NOT_AVAIABLE };
+	public static enum SeatEnum {
+		AVAIABLE, PRENOATED, NOT_AVAIABLE
+	};
 
 	private Map<DateTime, User> users;
 	private Map<DateTime, SeatEnum> statuses;
@@ -26,7 +28,7 @@ public class Seat implements Serializable, Cloneable {
 	 * Instantiates a new seat.
 	 */
 	public Seat() {
-		this.users 		= new HashMap<DateTime, User>();
+		this.users = new HashMap<DateTime, User>();
 		this.statuses = new HashMap<DateTime, SeatEnum>();
 	}
 
@@ -66,31 +68,30 @@ public class Seat implements Serializable, Cloneable {
 		this.statuses = statuses;
 	}
 
-	/** 
+	/**
 	 * Return a string rapresentation of the seat object
 	 * 
 	 * @return string rapresentation of the object
 	 */
 	@Override
 	public String toString() {
-		return this.getClass().getSimpleName() + "{" + 
-				"statuses: " 	+ this.statuses + 
-				"users: "			+ this.users + 
-				"}";
+		return this.getClass().getSimpleName() + "{" + "statuses: " + this.statuses + "users: " + this.users + "}";
 	}
 
 	/**
 	 * Make a "deep" comparision between this object and another object.
 	 * 
-	 * @return true, if the comparated object have the same class and the same proprierties
+	 * @return true, if the comparated object have the same class and the same
+	 *         proprierties
 	 */
 	@Override
 	public boolean equals(Object anotherObject) {
-		if(anotherObject == null) return false;
-		if(this.getClass() != anotherObject.getClass()) return false;
+		if (anotherObject == null)
+			return false;
+		if (this.getClass() != anotherObject.getClass())
+			return false;
 		Seat other = (Seat) anotherObject;
-		return this.statuses.equals(other.statuses) &&
-				this.users.equals(other.users);
+		return this.statuses.equals(other.statuses) && this.users.equals(other.users);
 	}
 
 	/**
@@ -104,11 +105,10 @@ public class Seat implements Serializable, Cloneable {
 			Seat cloned = (Seat) super.clone();
 
 			cloned.statuses = this.statuses;
-			cloned.users		= this.users;
+			cloned.users = this.users;
 
 			return cloned;
-		}
-		catch(CloneNotSupportedException e) {
+		} catch (CloneNotSupportedException e) {
 			return null;
 		}
 	}

@@ -17,7 +17,7 @@ public class Main {
     User user2 = new User("Diego", "diego", ClientKindEnum.ELDERLY);
     User user3 = new User("Macco", "macco", ClientKindEnum.KIDS);
 
-    Structure structure = new Structure("Nike");      
+    Structure structure = new Structure("Nike");
     structure.getRegistreredUsers().add(structureAdmin);
     structure.getRegistreredUsers().add(user1);
     structure.getRegistreredUsers().add(user2);

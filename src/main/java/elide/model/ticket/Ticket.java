@@ -24,14 +24,14 @@ public class Ticket implements Serializable, Cloneable {
 	 * Instantiates a new ticket.
 	 *
 	 * @param match the ticket's match
-	 * @param seat the ticket's seat
+	 * @param seat  the ticket's seat
 	 */
 	public Ticket(Match match, Seat seat) {
-		this.match 		= match;
-		this.teams 		= this.match.getTeam_1().getName() + " - " + this.match.getTeam_2().getName();
-		this.date 		= this.match.getDate();
-		this.stadium 	= this.match.getStadium();
-		this.seat 		= seat;
+		this.match = match;
+		this.teams = this.match.getTeam_1().getName() + " - " + this.match.getTeam_2().getName();
+		this.date = this.match.getDate();
+		this.stadium = this.match.getStadium();
+		this.seat = seat;
 	}
 
 	/**
@@ -130,42 +130,37 @@ public class Ticket implements Serializable, Cloneable {
 	 * @return true, if is expired
 	 */
 	public boolean isExpired() {
-		return DateTime.now().isAfter(this.date.getMillis() - 1000*60*60*12); 
+		return DateTime.now().isAfter(this.date.getMillis() - 1000 * 60 * 60 * 12);
 	}
-	
-	/** 
+
+	/**
 	 * Return a string rapresentation of the ticket object
 	 * 
 	 * @return string rapresentation of the object
 	 */
 	@Override
 	public String toString() {
-		return this.getClass().getSimpleName() + "{" +
-				"date: " 		+ this.date.toString("EEEE dd MMMM yyyy HH:mm") + 
-				"match: "		+ this.match +
-				"seat: "		+ this.seat +
-				"stadium: " + this.stadium +
-				"teams: "		+ this.teams +
-				"}";
+		return this.getClass().getSimpleName() + "{" + "date: " + this.date.toString("EEEE dd MMMM yyyy HH:mm") + "match: "
+				+ this.match + "seat: " + this.seat + "stadium: " + this.stadium + "teams: " + this.teams + "}";
 	}
-	
+
 	/**
 	 * Make a "deep" comparision between this object and another object.
 	 * 
-	 * @return true, if the comparated object have the same class and the same proprierties
+	 * @return true, if the comparated object have the same class and the same
+	 *         proprierties
 	 */
 	@Override
 	public boolean equals(Object anotherObject) {
-		if(anotherObject == null) return false;
-		if(this.getClass() != anotherObject.getClass()) return false;
+		if (anotherObject == null)
+			return false;
+		if (this.getClass() != anotherObject.getClass())
+			return false;
 		Ticket other = (Ticket) anotherObject;
-		return this.date.equals(other.date) &&
-				this.match.equals(other.match) &&
-				this.seat.equals(other.seat) &&
-				this.stadium.equals(other.stadium) &&
-				this.teams.equals(other.teams);
+		return this.date.equals(other.date) && this.match.equals(other.match) && this.seat.equals(other.seat)
+				&& this.stadium.equals(other.stadium) && this.teams.equals(other.teams);
 	}
-	
+
 	/**
 	 * Make a "deep" copy of this object.
 	 * 
@@ -175,16 +170,15 @@ public class Ticket implements Serializable, Cloneable {
 	public Object clone() {
 		try {
 			Ticket cloned = (Ticket) super.clone();
-			
-			cloned.date 		= this.date;
-			cloned.match 		= (Match) this.match.clone();
-			cloned.seat 		= (Seat) this.seat.clone();
-			cloned.stadium 	= (Stadium) this.stadium.clone();
-			cloned.teams		= this.teams;
-			
+
+			cloned.date = this.date;
+			cloned.match = (Match) this.match.clone();
+			cloned.seat = (Seat) this.seat.clone();
+			cloned.stadium = (Stadium) this.stadium.clone();
+			cloned.teams = this.teams;
+
 			return cloned;
-		}
-		catch(CloneNotSupportedException e) {
+		} catch (CloneNotSupportedException e) {
 			return null;
 		}
 	}

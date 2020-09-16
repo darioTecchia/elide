@@ -16,7 +16,7 @@ public class Team implements Serializable, Cloneable {
 	 * @param name the name
 	 */
 	public Team(String name) {
-		if(!name.matches("(([a-zA-Z]{1,}(\\W)*(\\s)*[a-zA-Z]{1,})(\\s)*)*")) {
+		if (!name.matches("(([a-zA-Z]{1,}(\\W)*(\\s)*[a-zA-Z]{1,})(\\s)*)*")) {
 			throw new IllegalArgumentException("Team's name not valid");
 		}
 		this.name = name;
@@ -37,33 +37,34 @@ public class Team implements Serializable, Cloneable {
 	 * @param name the new name
 	 */
 	public void setName(String name) {
-		if(!name.matches("(([a-zA-Z]{1,}(\\W)*(\\s)*[a-zA-Z]{1,})(\\s)*)*")) {
+		if (!name.matches("(([a-zA-Z]{1,}(\\W)*(\\s)*[a-zA-Z]{1,})(\\s)*)*")) {
 			throw new IllegalArgumentException("Team's name not valid");
 		}
 		this.name = name;
 	}
 
-	/** 
+	/**
 	 * Return a string rapresentation of the team object
 	 * 
 	 * @return string rapresentation of the object
 	 */
 	@Override
 	public String toString() {
-		return this.getClass().getSimpleName() + "{" +
-				"name: " + this.name + 
-				"}";
+		return this.getClass().getSimpleName() + "{" + "name: " + this.name + "}";
 	}
 
 	/**
 	 * Make a "deep" comparision between this object and another object.
 	 * 
-	 * @return true, if the comparated object have the same class and the same proprierties
+	 * @return true, if the comparated object have the same class and the same
+	 *         proprierties
 	 */
 	@Override
 	public boolean equals(Object anotherObject) {
-		if(anotherObject == null) return false;
-		if(this.getClass() != anotherObject.getClass()) return false;
+		if (anotherObject == null)
+			return false;
+		if (this.getClass() != anotherObject.getClass())
+			return false;
 		Team other = (Team) anotherObject;
 		return this.name.equals(other.name);
 	}
@@ -81,8 +82,7 @@ public class Team implements Serializable, Cloneable {
 			cloned.name = this.name;
 
 			return cloned;
-		}
-		catch (CloneNotSupportedException e) {
+		} catch (CloneNotSupportedException e) {
 			return null;
 		}
 	}
