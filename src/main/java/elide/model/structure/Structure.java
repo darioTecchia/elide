@@ -392,6 +392,34 @@ public class Structure implements Serializable, Cloneable {
 	public void setDiscountPercentage(int discountPercentage) {
 		this.discountPercentage = discountPercentage;
 	}
+
+	/**
+	 * Login.
+	 *
+	 * @param username the user's name
+	 * @param password the user's password
+	 */
+	public boolean login(String username, String password) {
+		System.out.println(username + "-" + password);
+
+		for(User user: this.getRegistreredUsers()) {
+			if(user.getName().equalsIgnoreCase(username) && user.getPassword().equals(password)) {
+				System.out.println("Someone has logged with: " + username + "-" + password);
+				this.setCurrentUser(user);
+				return true;
+			}
+		}
+		System.out.println("Account not found!");
+		return false;
+	}
+
+	/**
+	 * Logout.
+	 */
+	public void logout() {
+		System.out.println(this.getCurrentUser().getName() + " Logged Out!");
+		this.setCurrentUser(null);
+	}
 	
 	/** 
 	 * Return a string rapresentation of the structure object
