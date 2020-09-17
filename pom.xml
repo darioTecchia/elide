@@ -5,6 +5,13 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>Elide</name>
   <dependencies>
+
+    <dependency>
+      <groupId>org.javalite</groupId>
+      <artifactId>activejdbc</artifactId>
+      <version>2.3.2-j8</version>
+    </dependency>
+
   	<dependency>
   		<groupId>joda-time</groupId>
   		<artifactId>joda-time</artifactId>
